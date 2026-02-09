@@ -19,37 +19,6 @@ function App() {
 }
 
 
-
-
-*/
-Task 2: Create a Class Component and Use JSX (5 Points)
-
-Create a class-based component named UserInfo that:
--Uses JSX to return a <div> containing a user's name and profession.
--Defines state inside the component to hold user details.
--Displays a random number inside JSX (e.g., "Your lucky number is 7").
-/*
-
-class UserInfo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username= "DavidWallace",
-      profession: "Developer",
-      employeenumber: 555
-  };
-}
-  render() {
-    return (
-      <div>
-        <h2>{username}</h2>
-        <h3>{profession}</h3>
-        <h4>{employeenumber}</h4>
-      </div>
-    );
-  }
-}
-
 */
 Task 3: Dynamic Content Using JSX and React Components (5 Points)
 -Create an array of tasks inside the App component.
