@@ -3,6 +3,12 @@ import UserInfo from "./components/UserInfo";
 import TaskComponent from "./components/TaskComponent";
 
 function App() {
+  const tasknumber = Math.floor(Math.random() * 100);
+  const username = ["dwallace", "mscott", "dschrute", "jhalpert"];;
+  const profession = ["Employee", "Manager", "Sr. Manager", "CEO"];
+  const employeenumber = Math.floor(Math.random() * 1000);
+  const tasks = ["Document", "Collaborate", "Programming", "Coding"];
+  
   return (
     <div>
       <Greeting />
@@ -12,33 +18,8 @@ function App() {
   );
 }
 
-*/
-Project 1: Greeting, para, name, profession, number, tasks:
-
-Task 1: Create a React Component Using JSX (5 Points)
-
--Create a functional component called Greeting that: 
--Uses JSX to return an <h1> element displaying a greeting message (e.g., "Hello, Welcome to React!").
--Includes a paragraph <p> with an inline style applied using JSX.
--Uses JavaScript expressions inside JSX (e.g., displaying the current date dynamically).
-/*
-
-function App() {
-  const tasknumber;
-  const username;
-  const profession;
-  const employeenumber;
-  const tasks = ["Document", "Collaborate", "Programming", "Coding"];
 
 
-function Greeting() {
-  return (
-    <div>
-    <h1>Welcome to TaskHub, {username}!</h1>
-    <p style:{{font-style: italic;}}>You have {tasknumber} employee tasks.</p>
-    </div>
-  );
-}
 
 */
 Task 2: Create a Class Component and Use JSX (5 Points)
