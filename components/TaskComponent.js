@@ -5,14 +5,18 @@ Task 3: Dynamic Content Using JSX and React Components (5 Points)
 -Display a random task inside a <h3> using JSX.
 */
 
-function getRandomTask() {
+function TaskComponent({ tasks }) {
+  const getRandomTask = () => {
+    const index = Math.floor(Math.random() * tasks.length);
+    return tasks[index];
+  };
+  
   return (
     <div>
       <h2>Task:</h2>
-      <h3>{randomtask}</h3>
+      <h3>{getRandomTask()}</h3>
     </div>
   );
 }
 
-export getRandomTask;
-
+export default TaskComponent;
