@@ -1,4 +1,4 @@
-*/
+/*
 Project 1: Greeting, para, name, profession, number, tasks:
 
 Task 1: Create a React Component Using JSX (5 Points)
@@ -8,10 +8,10 @@ Task 1: Create a React Component Using JSX (5 Points)
 -Includes a paragraph <p> with an inline style applied using JSX.
 -Uses JavaScript expressions inside JSX (e.g., displaying the current date dynamically).
   
-/*
+*/
 
 
-function Greeting({username, tasknumber}) {
+function Greeting({ username, tasknumber }) {
   return (
     <div>
       <h1>Welcome to TaskHub, {username}!</h1>
