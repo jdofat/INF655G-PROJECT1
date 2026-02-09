@@ -1,3 +1,17 @@
+import Greeting from "./components/Greeting";
+import UserInfo from "./components/UserInfo";
+import TaskComponent from "./components/TaskComponent";
+
+function App() {
+  return (
+    <div>
+      <Greeting />
+      <UserInfo />
+      <TaskComponent />
+    </div>
+  );
+}
+
 */
 Project 1: Greeting, para, name, profession, number, tasks:
 
@@ -8,8 +22,6 @@ Task 1: Create a React Component Using JSX (5 Points)
 -Includes a paragraph <p> with an inline style applied using JSX.
 -Uses JavaScript expressions inside JSX (e.g., displaying the current date dynamically).
 /*
-
-
 
 function App() {
   const tasknumber;
@@ -81,5 +93,5 @@ Task 4: Parent and Child Components Using JSX (5 Points)
 -Render them inside a single <div> (following JSX rules).
 /*
 
-
+export default App;
 
