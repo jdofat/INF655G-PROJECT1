@@ -7,8 +7,8 @@ function App() {
   const usernames = ["dwallace", "mscott", "dschrute", "jhalpert"];
   const professions = ["Employee", "Manager", "Sr. Manager", "CEO"];
   
-  const randomUser =
-    usernames[Math.floor(Math.random() * usernames.length)];
+  /*const randomUser =
+    usernames[Math.floor(Math.random() * usernames.length)];*/
 
   const randomProfession =
     professions[Math.floor(Math.random() * professions.length)];
@@ -17,9 +17,22 @@ function App() {
   
   return (
     <div>
-      <Greeting username={randomUser} tasknumber={tasknumber} />
-      <UserInfo profession={randomProfession} />
-      <TaskComponent tasks={tasks} />
+      <h1>{usernames[0]} has:</h1>
+      <p style={{ fontStyle: "italic" }}>
+        {tasknumber} employee tasks.
+      </p>
+
+      <h1>{usernames[1]} has:</h1>
+      <p style={{ fontStyle: "italic" }}>
+        {tasknumber} employee tasks.
+      </p>
+          
+    <div>
+      <Greeting username={usernames[0]} tasknumber={tasknumber} />
+        <Greeting username={usernames[1]} tasknumber={tasknumber} />
+        <UserInfo profession={randomProfession} />
+        <TaskComponent tasks={tasks} />
+      </div>
     </div>
   );
 }
