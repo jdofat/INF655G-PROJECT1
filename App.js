@@ -1,6 +1,7 @@
 import Greeting from "./components/Greeting";
 import UserInfo from "./components/UserInfo";
 import TaskComponent from "./components/TaskComponent";
+import Counter from "./components/Counter";
 
 function App() {
   const tasknumber = Math.floor(Math.random() * 100);
