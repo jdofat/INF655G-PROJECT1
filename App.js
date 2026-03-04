@@ -14,7 +14,7 @@ function App() {
   const randomProfession =
     professions[Math.floor(Math.random() * professions.length)];
   
-  const tasks = ["Document", "Collaborate", "Programming", "Coding"];
+  const tasks = ["Document", "Collaborate", "Programming", "Coding", "Helping"];
   
   return (
     <div>
