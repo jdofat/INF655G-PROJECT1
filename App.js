@@ -33,17 +33,18 @@ function App() {
         <Greeting username={usernames[1]} tasknumber={tasknumber} />
         <UserInfo profession={randomProfession} />
         <TaskComponent tasks={tasks} />
-      </div>
+        <Counter />
+
+      <h2>Task List:</h2>
+        <ul>
+        {tasks.map((task, index) => (
+          <li key={index}>{task}</li>
+        ))}
+      </ul>
     </div>
+  </div>
   );
 }
-
-/*
-Task 4: Parent and Child Components Using JSX (5 Points)
--Modify App.js to:
--Import the Greeting, UserInfo, and TaskComponent components.
--Render them inside a single <div> (following JSX rules).
-*/
 
 export default App;
 
