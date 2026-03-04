@@ -1,4 +1,4 @@
-*/
+/*
 Task 2: Manage State with useState (5 Points)
 Create a Counter component.
 Use the useState hook to track a count value.
@@ -8,7 +8,7 @@ Example Output:
 Count: 0  
 [Click Me]  
 (Clicking the button increases the count)  
-/*
+*/
 
 
 import { useState } from "react";
