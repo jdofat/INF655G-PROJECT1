@@ -7,14 +7,16 @@ function App() {
   const tasknumber = Math.floor(Math.random() * 100);
   const usernames = ["dwallace", "mscott", "dschrute", "jhalpert"];
   const professions = ["Employee", "Manager", "Sr. Manager", "CEO"];
-  
-  /*const randomUser =
-    usernames[Math.floor(Math.random() * usernames.length)];*/
 
   const randomProfession =
     professions[Math.floor(Math.random() * professions.length)];
   
   const tasks = ["Document", "Collaborate", "Programming", "Coding", "Helping"];
+
+  const handleAlert = () => {
+    alert("Button was clicked!");
+  };
+
   
   return (
     <div>
@@ -31,7 +33,10 @@ function App() {
     <div>
       <Greeting username={usernames[0]} tasknumber={tasknumber} />
         <Greeting username={usernames[1]} tasknumber={tasknumber} />
-        <UserInfo profession={randomProfession} />
+        <UserInfo 
+          profession={randomProfession} 
+          handleClick={handleAlert} 
+        />
         <TaskComponent tasks={tasks} />
         <Counter />
 
