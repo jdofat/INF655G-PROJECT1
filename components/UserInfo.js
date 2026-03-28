@@ -1,25 +1,40 @@
+import React from 'react';
 
+function UserName({name}) {
+  return <h2>Name: {name}</h2>;
+}
 
-import React from "react";
+function UserJob({job}) {
+  return <h3>Job: {job}</h3>;
+};
 
 class UserInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      username: "dwallace",
-      profession: "Employee",
-      employeeNumber: Math.floor(Math.random() * 1000)
-  };
-}
+      this.state = {
+        yournumber: Math.floor(Math.random() * 1000),
+        luckynumber: Math.floor(Match.random() * 100) + 1,                  
+    };
+  }
+
+  newLuckyNumber = () => {
+    this.setState({
+      luckyNumber: Math.floor(Math.random() * 100) + 1,
+  });
+};
+
   render() {
+    const {name, job, handleAlert} = this.props;
+    const {yournumber, luckyNumber} = this.state;
+
+
     return (
       <div>
-        <h2>User: {this.state.username}</h2>
-        <h3>Profession: {this.state.profession}</h3>
-        <p>Employee Number: {this.state.employeeNumber}</p>
-        <button onClick={this.props.handleClick}>
-          CLICK ME!
-        </button>
+        <UserName name={name} />
+        <UserJob job={job} />
+        <p>Employee Number: {yournumber}</p>
+        <button onClick={handleAlert}>Show Alert</button>
+        <button onClick={this.newLuckyNumber}>New Number</button>
       </div>
     );
   }
