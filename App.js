@@ -1,30 +1,29 @@
-import React, { useState } from 'react';
-import Greeting from './INF655-Assignment1/Greeting';
-import UserInfo from './INF655-Assignment1/UserInfo';
-import TaskForm from './INF655-Assignment1/TaskForm';
+import React, { useEffect, useState } from "react";
+import { auth } from "./firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import Auth from "./Auth";
+import TaskForm from "./TaskForm";
 
 function App() {
-  const [tasks, setTasks] = useState([
-    { taskName: "Read", description: "read book" },
-    { taskName: "Shop", description: "go shopping" },
-    { taskName: "Laundry", description: "do laundry" },
-  ]);
+  const [user, setUser] = useState(null);
 
-  const deleteTask = (taskIndex) => {
-    const areYouSure = window.confirm("Are you sure?");
-    if (areYouSure) {
-      setTasks(tasks.filter((task, index) => index !== taskIndex));
-    }
-  };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  if (!user) {
+    return <Auth />;
+  }
 
   return (
     <div>
       <h1>Task Manager</h1>
-
-      <Greeting username="John" />
-      <UserInfo name="Jade" job="Student" />
-
-      <TaskForm tasks={tasks} setTasks={setTasks} deleteTask={deleteTask} />
+      <p>Welcome, {user.email}</p>
+      <button onClick={() => signOut(auth)}>Logout</button>
+      <TaskForm user={user} />
     </div>
   );
 }
