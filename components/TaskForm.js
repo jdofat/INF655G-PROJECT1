@@ -1,69 +1,81 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
+import { db } from "./firebase";
+import {
+  collection,
+  addDoc,
+  query,
+  where,
+  onSnapshot,
+  deleteDoc,
+  doc,
+  serverTimestamp
+} from "firebase/firestore";
 
-function TaskForm({ tasks, setTasks, deleteTask }) {
+function TaskForm({ user }) {
   const [taskName, setTaskName] = useState("");
-  const [description, setDescription] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [taskDescription, setTaskDescription] = useState("");
+  const [tasks, setTasks] = useState([]);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    const q = query(
+      collection(db, "tasks"),
+      where("userId", "==", user.uid)
+    );
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      setTasks(snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      })));
+    });
+
+    return () => unsubscribe();
+  }, [user.uid]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (taskName.trim() === "" || description.trim() === "") {
-      alert("Enter task and description");
-      return;
-    }
+    if (!taskName || !taskDescription) return;
 
-    setTasks([...tasks, { taskName, description }]);
+    await addDoc(collection(db, "tasks"), {
+      userId: user.uid,
+      taskName,
+      taskDescription,
+      createdAt: serverTimestamp()
+    });
+
     setTaskName("");
-    setDescription("");
+    setTaskDescription("");
   };
 
-  const handleSort = () => {
-    setTasks([...tasks].sort((a, b) =>
-      a.taskName.localeCompare(b.taskName)
-    ));
-  };
+  const deleteTask = async (id) => {
+    const confirmDelete = window.confirm("Are you sure?");
+    if (!confirmDelete) return;
 
-  const filteredTasks = tasks.filter(task =>
-    task.taskName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+    await deleteDoc(doc(db, "tasks", id));
+  };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <input
-          type="text"
-          placeholder="Enter Task Name"
+          placeholder="Task Name"
           value={taskName}
           onChange={(e) => setTaskName(e.target.value)}
         />
-
         <input
-          type="text"
-          placeholder="Enter Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Description"
+          value={taskDescription}
+          onChange={(e) => setTaskDescription(e.target.value)}
         />
-
         <button type="submit">Add Task</button>
       </form>
 
-      <input
-        type="text"
-        placeholder="Search Tasks"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-
-      <button onClick={handleSort}>Sort by Name</button>
-
       <ul>
-        {filteredTasks.map((task, index) => (
-          <li key={index}>
-            {task.taskName} - {task.description}
-            <button onClick={() => deleteTask(index)}>
-              Delete
-            </button>
+        {tasks.map((task) => (
+          <li key={task.id}>
+            {task.taskName} - {task.taskDescription}
+            <button onClick={() => deleteTask(task.id)}>Delete</button>
           </li>
         ))}
       </ul>
